@@ -1,0 +1,497 @@
+{
+	"info": {
+		"_postman_id": "d5b7c33d-adeb-47b9-b031-18d6548df95f",
+		"name": "XSEDE_API_TESTS_POSTMAN_withGithub",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "glue2-db-api",
+			"item": [
+				{
+					"name": "abstractservice",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Response time is less than 300ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(300);",
+									"});"
+								],
+								"type": "text/javascript",
+								"id": "7df94e74-46ef-4d1b-a6cf-b2966627fc54"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.sendRequest(\"https://info.xsede.org/wh1/glue2-db-api/v1/abstractservice/\", function (err, response) {",
+									"    //console.log(response.json()[0]);",
+									"",
+									"    // get ID of first element",
+									"    ID = response.json()[0].ID;",
+									"    console.log(ID);",
+									"",
+									"    // get ResourceID of first element - TEST purpose",
+									"    //resourceID = response.json()[0].ResourceID;",
+									"    //console.log(resourceID);",
+									"",
+									"    // set ID to collection variable",
+									"    pm.collectionVariables.set(\"xsede_ID\", ID);",
+									"",
+									"});"
+								],
+								"type": "text/javascript",
+								"id": "b8a7f3be-e00b-4b99-9044-673c5b14fc7b"
+							}
+						}
+					],
+					"_postman_id": "78533d70-c939-4c7f-a41a-b25ee0efc852",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://info.xsede.org/wh1/glue2-db-api/v1/abstractservice/",
+							"protocol": "https",
+							"host": [
+								"info",
+								"xsede",
+								"org"
+							],
+							"path": [
+								"wh1",
+								"glue2-db-api",
+								"v1",
+								"abstractservice",
+								""
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "abstractservice_ID",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"",
+									"//pm.environment.set(\"localID\", \"urn:glue2:ComputingService:expanse-gpu.sdsc.xsede.org\");",
+									"// Get ID from collection variable which is set by previous test",
+									"pm.environment.set(\"localID\", pm.collectionVariables.get(\"xsede_ID\"));",
+									"console.log(pm.collectionVariables.get(\"xsede_ID\"));",
+									"// console.log(pm.environment.get(\"absIDLocal\"));"
+								],
+								"type": "text/javascript",
+								"id": "e5b223db-4ae4-4140-8aba-90934afcd3c5"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"id": "bcfca4d9-5c39-4759-9f4b-5fb44515f8fa"
+							}
+						}
+					],
+					"_postman_id": "a27ad45f-07fe-4300-bb87-41bf2a230087",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "https://info.xsede.org/wh1/glue2-db-api/v1/abstractservice/ID/{{localID}}"
+					},
+					"response": []
+				},
+				{
+					"name": "abstractservice_IDtestenv",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"",
+									"console.log(pm.collectionVariables.get(\"xsede_ID\"));",
+									"",
+									"pm.collectionVariables.set(\"xsede_ID\", \"urn:glue2:ComputingService:expanse-gpu.sdsc.xsede.org\");",
+									"",
+									"console.log(pm.collectionVariables.get(\"xsede_ID\"));",
+									""
+								],
+								"type": "text/javascript",
+								"id": "08126f16-d15c-4d74-a2eb-ca0f06266c08"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"id": "e2103280-0e76-4d94-96b8-58ddb3a6a9aa"
+							}
+						}
+					],
+					"_postman_id": "be31595b-83d2-42d2-8135-d94715463c4b",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "https://info.xsede.org/wh1/glue2-db-api/v1/abstractservice/ID/{{xsede_ID}}"
+					},
+					"response": []
+				}
+			],
+			"_postman_id": "76876cef-5816-4de2-af25-0fda640da8c4"
+		},
+		{
+			"name": "glue2-view-api",
+			"item": [
+				{
+					"name": "services-spf",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"id": "fee438c3-4b47-4d5b-8d92-82840fcc07e3"
+							}
+						}
+					],
+					"_postman_id": "b97c7332-5145-44c3-8b63-3b6c6540da9d",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "https://info.xsede.org/wh1/glue2-views-api/v1/services-spf/"
+					},
+					"response": []
+				}
+			],
+			"_postman_id": "ddb4e7d4-aec2-4876-9cd3-f3d451b7224f"
+		},
+		{
+			"name": "IncaTests",
+			"item": [
+				{
+					"name": "IncaTest1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript",
+								"id": "034ae2d9-9339-415b-b07d-27546ed660ec"
+							}
+						}
+					],
+					"_postman_id": "3e10b3a1-90e9-4ad8-80cf-9cf044fe6611",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://info.xsede.org/wh1/resource-api/v3/resource_esearch?search_terms=aws",
+							"protocol": "https",
+							"host": [
+								"info",
+								"xsede",
+								"org"
+							],
+							"path": [
+								"wh1",
+								"resource-api",
+								"v3",
+								"resource_esearch"
+							],
+							"query": [
+								{
+									"key": "search_terms",
+									"value": "aws"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "IncaTest2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"id": "01c23ccd-186e-4ae5-b6c6-0e948ff2b9b6"
+							}
+						}
+					],
+					"_postman_id": "c2824759-f953-41c2-8ce7-be00f97feb55",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://info.xsede.org/wh1/resource-api/v3/resource_esearch?affiliation=uiuc.edu&resource_groups=organizations&page=1&results_per_page=20",
+							"protocol": "https",
+							"host": [
+								"info",
+								"xsede",
+								"org"
+							],
+							"path": [
+								"wh1",
+								"resource-api",
+								"v3",
+								"resource_esearch"
+							],
+							"query": [
+								{
+									"key": "affiliation",
+									"value": "uiuc.edu"
+								},
+								{
+									"key": "resource_groups",
+									"value": "organizations"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "results_per_page",
+									"value": "20"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "IncaTest3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"id": "0c260318-c536-4f85-b390-62242975cbab"
+							}
+						}
+					],
+					"_postman_id": "b92a58d0-35c6-4360-b614-48a7f2870baa",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://info.xsede.org/wh1/resource-api/v3/event_search/?affiliation=uiuc.edu&results_per_page=4&page=1",
+							"protocol": "https",
+							"host": [
+								"info",
+								"xsede",
+								"org"
+							],
+							"path": [
+								"wh1",
+								"resource-api",
+								"v3",
+								"event_search",
+								""
+							],
+							"query": [
+								{
+									"key": "affiliation",
+									"value": "uiuc.edu"
+								},
+								{
+									"key": "results_per_page",
+									"value": "4"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "IncaTest4",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"id": "8b3c2c18-6489-44b2-9bd5-c7ecdab42a7e"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"let today = new Date();",
+									"console.log(today);",
+									"",
+									"let todayfmt = new Date(today.getFullYear(), today.getMonth(), today.getDate()).toJSON().slice(0,10) + \"T00:00:00-05:00\";",
+									"console.log(todayfmt);",
+									"",
+									"let nextweekfmt = new Date(today.getFullYear(), today.getMonth(), today.getDate()+7).toJSON().slice(0,10) + \"T00:00:00-05:00\";",
+									"console.log(nextweekfmt);",
+									"",
+									"pm.environment.set(\"param1\", todayfmt );",
+									"pm.environment.set(\"param2\", nextweekfmt );"
+								],
+								"type": "text/javascript",
+								"id": "41fcb2ec-5d96-4f5b-ab9a-bc9bd631c1c8"
+							}
+						}
+					],
+					"_postman_id": "a5d4352c-7c9c-4ab7-9a27-60d91a423c61",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://info.xsede.org/wh1/resource-api/v3/event_search/?affiliation=uiuc.edu&start_date={{param1}}&end_date={{param2}}",
+							"protocol": "https",
+							"host": [
+								"info",
+								"xsede",
+								"org"
+							],
+							"path": [
+								"wh1",
+								"resource-api",
+								"v3",
+								"event_search",
+								""
+							],
+							"query": [
+								{
+									"key": "affiliation",
+									"value": "uiuc.edu"
+								},
+								{
+									"key": "start_date",
+									"value": "{{param1}}"
+								},
+								{
+									"key": "end_date",
+									"value": "{{param2}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"_postman_id": "bef2b2e7-a810-4474-b67a-1ef1173030fe"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				],
+				"id": "db87f798-12cb-4df7-bc34-2d76253dca7f"
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				],
+				"id": "f0822dde-73a4-4d30-a3b2-b3093f6e913d"
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "7dbb45e9-05fc-42ae-93c7-1d6eac32e1fa",
+			"key": "xsede_ID",
+			"value": "urn:glue2:ComputingService:expanse-gpu.sdsc.xsede.org",
+			"type": "string"
+		}
+	]
+}
