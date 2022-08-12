@@ -125,49 +125,6 @@
 						"url": "https://info.xsede.org/wh1/glue2-db-api/v1/abstractservice/ID/{{localID}}"
 					},
 					"response": []
-				},
-				{
-					"name": "abstractservice_IDtestenv",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"",
-									"console.log(pm.collectionVariables.get(\"xsede_ID\"));",
-									"",
-									"pm.collectionVariables.set(\"xsede_ID\", \"urn:glue2:ComputingService:expanse-gpu.sdsc.xsede.org\");",
-									"",
-									"console.log(pm.collectionVariables.get(\"xsede_ID\"));",
-									""
-								],
-								"type": "text/javascript",
-								"id": "08126f16-d15c-4d74-a2eb-ca0f06266c08"
-							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});"
-								],
-								"type": "text/javascript",
-								"id": "e2103280-0e76-4d94-96b8-58ddb3a6a9aa"
-							}
-						}
-					],
-					"id": "6623d0d6-1dd7-4b35-a770-28ea15c3f89b",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": "https://info.xsede.org/wh1/glue2-db-api/v1/abstractservice/ID/{{xsede_ID}}"
-					},
-					"response": []
 				}
 			],
 			"id": "76876cef-5816-4de2-af25-0fda640da8c4"
@@ -488,7 +445,7 @@
 	],
 	"variable": [
 		{
-			"id": "0bb68d1a-08f7-4769-b570-918f6ad06458",
+			"id": "99113290-ca66-4463-949d-1555a02ca695",
 			"key": "xsede_ID",
 			"value": "urn:glue2:ComputingService:expanse-gpu.sdsc.xsede.org"
 		}
