@@ -14,28 +14,20 @@
 						{
 							"listen": "test",
 							"script": {
+								"id": "7df94e74-46ef-4d1b-a6cf-b2966627fc54",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
 									"});",
+									"",
 									"pm.test(\"Response time is less than 300ms\", function () {",
 									"    pm.expect(pm.response.responseTime).to.be.below(300);",
-									"});"
-								],
-								"type": "text/javascript",
-								"id": "7df94e74-46ef-4d1b-a6cf-b2966627fc54"
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"pm.sendRequest(\"https://info.xsede.org/wh1/glue2-db-api/v1/abstractservice/\", function (err, response) {",
-									"    //console.log(response.json()[0]);",
+									"});",
 									"",
+									"pm.test(\"Save ID\", function () {",
 									"    // get ID of first element",
-									"    ID = response.json()[0].ID;",
-									"    console.log(ID);",
+									"    ID = pm.response.json()[0].ID;",
+									"    //console.log(ID);",
 									"",
 									"    // get ResourceID of first element - TEST purpose",
 									"    //resourceID = response.json()[0].ResourceID;",
@@ -43,15 +35,23 @@
 									"",
 									"    // set ID to collection variable",
 									"    pm.collectionVariables.set(\"xsede_ID\", ID);",
-									"",
 									"});"
 								],
-								"type": "text/javascript",
-								"id": "b8a7f3be-e00b-4b99-9044-673c5b14fc7b"
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "b8a7f3be-e00b-4b99-9044-673c5b14fc7b",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
-					"_postman_id": "78533d70-c939-4c7f-a41a-b25ee0efc852",
+					"id": "78533d70-c939-4c7f-a41a-b25ee0efc852",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -115,7 +115,7 @@
 							}
 						}
 					],
-					"_postman_id": "a27ad45f-07fe-4300-bb87-41bf2a230087",
+					"id": "a27ad45f-07fe-4300-bb87-41bf2a230087",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -158,7 +158,7 @@
 							}
 						}
 					],
-					"_postman_id": "be31595b-83d2-42d2-8135-d94715463c4b",
+					"id": "36527cfd-6cd7-4927-98d1-2c6585663876",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -170,7 +170,7 @@
 					"response": []
 				}
 			],
-			"_postman_id": "76876cef-5816-4de2-af25-0fda640da8c4"
+			"id": "76876cef-5816-4de2-af25-0fda640da8c4"
 		},
 		{
 			"name": "glue2-view-api",
@@ -191,7 +191,7 @@
 							}
 						}
 					],
-					"_postman_id": "b97c7332-5145-44c3-8b63-3b6c6540da9d",
+					"id": "b97c7332-5145-44c3-8b63-3b6c6540da9d",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -203,7 +203,7 @@
 					"response": []
 				}
 			],
-			"_postman_id": "ddb4e7d4-aec2-4876-9cd3-f3d451b7224f"
+			"id": "ddb4e7d4-aec2-4876-9cd3-f3d451b7224f"
 		},
 		{
 			"name": "IncaTests",
@@ -226,7 +226,7 @@
 							}
 						}
 					],
-					"_postman_id": "3e10b3a1-90e9-4ad8-80cf-9cf044fe6611",
+					"id": "3e10b3a1-90e9-4ad8-80cf-9cf044fe6611",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -277,7 +277,7 @@
 							}
 						}
 					],
-					"_postman_id": "c2824759-f953-41c2-8ce7-be00f97feb55",
+					"id": "c2824759-f953-41c2-8ce7-be00f97feb55",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -340,7 +340,7 @@
 							}
 						}
 					],
-					"_postman_id": "b92a58d0-35c6-4360-b614-48a7f2870baa",
+					"id": "b92a58d0-35c6-4360-b614-48a7f2870baa",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -420,7 +420,7 @@
 							}
 						}
 					],
-					"_postman_id": "a5d4352c-7c9c-4ab7-9a27-60d91a423c61",
+					"id": "a5d4352c-7c9c-4ab7-9a27-60d91a423c61",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -461,7 +461,7 @@
 					"response": []
 				}
 			],
-			"_postman_id": "bef2b2e7-a810-4474-b67a-1ef1173030fe"
+			"id": "bef2b2e7-a810-4474-b67a-1ef1173030fe"
 		}
 	],
 	"event": [
@@ -488,10 +488,9 @@
 	],
 	"variable": [
 		{
-			"id": "7dbb45e9-05fc-42ae-93c7-1d6eac32e1fa",
+			"id": "b5ddb9ea-a969-439e-a6e9-1c90ec4c2a7e",
 			"key": "xsede_ID",
-			"value": "urn:glue2:ComputingService:expanse-gpu.sdsc.xsede.org",
-			"type": "string"
+			"value": "urn:glue2:ComputingService:expanse-gpu.sdsc.xsede.org"
 		}
 	]
 }
