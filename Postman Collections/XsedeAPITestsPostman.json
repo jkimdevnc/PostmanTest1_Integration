@@ -23,7 +23,7 @@
 									"pm.test(\"Save ID\", function () {",
 									"    // get mid index of response data array",
 									"    let arrLen = pm.response.json().length;",
-									"    console.log(arrLen);",
+									"    //console.log(arrLen);",
 									"    if (arrLen < 1) {",
 									"        pm.expect.fail(\" No element exist!\");",
 									"    }",
@@ -106,8 +106,10 @@
 								"exec": [
 									"",
 									"// Get ID from collection variable which is set by previous test",
+									"//console.log(pm.collectionVariables.get(\"xsede_ID\"));",
 									"pm.environment.set(\"localID\", pm.collectionVariables.get(\"xsede_ID\"));",
-									"console.log(pm.collectionVariables.get(\"xsede_ID\"));",
+									"",
+									"",
 									""
 								],
 								"type": "text/javascript"
@@ -461,7 +463,7 @@
 	],
 	"variable": [
 		{
-			"id": "5f77fb86-faa3-4de7-b727-c3f6df6c8994",
+			"id": "2f02fc90-3d54-4323-9e20-8c90ef48f9e9",
 			"key": "xsede_ID",
 			"value": "urn:glue2:ComputingService:expanse-gpu.sdsc.xsede.org"
 		}
