@@ -20,10 +20,6 @@
 									"    pm.response.to.have.status(200);",
 									"});",
 									"",
-									"pm.test(\"Response time is less than 300ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(300);",
-									"});",
-									"",
 									"pm.test(\"Save ID\", function () {",
 									"    // get ID of first element",
 									"    ID = pm.response.json()[0].ID;",
@@ -35,7 +31,13 @@
 									"",
 									"    // set ID to collection variable",
 									"    pm.collectionVariables.set(\"xsede_ID\", ID);",
-									"});"
+									"});",
+									"",
+									"pm.test(\"Response time is less than 300ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(300);",
+									"});",
+									"",
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -90,28 +92,27 @@
 						{
 							"listen": "prerequest",
 							"script": {
+								"id": "e5b223db-4ae4-4140-8aba-90934afcd3c5",
 								"exec": [
 									"",
-									"//pm.environment.set(\"localID\", \"urn:glue2:ComputingService:expanse-gpu.sdsc.xsede.org\");",
 									"// Get ID from collection variable which is set by previous test",
 									"pm.environment.set(\"localID\", pm.collectionVariables.get(\"xsede_ID\"));",
 									"console.log(pm.collectionVariables.get(\"xsede_ID\"));",
-									"// console.log(pm.environment.get(\"absIDLocal\"));"
+									""
 								],
-								"type": "text/javascript",
-								"id": "e5b223db-4ae4-4140-8aba-90934afcd3c5"
+								"type": "text/javascript"
 							}
 						},
 						{
 							"listen": "test",
 							"script": {
+								"id": "bcfca4d9-5c39-4759-9f4b-5fb44515f8fa",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
 									"});"
 								],
-								"type": "text/javascript",
-								"id": "bcfca4d9-5c39-4759-9f4b-5fb44515f8fa"
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -445,7 +446,7 @@
 	],
 	"variable": [
 		{
-			"id": "99113290-ca66-4463-949d-1555a02ca695",
+			"id": "0edf7b88-b054-430f-aeb4-fe408111efce",
 			"key": "xsede_ID",
 			"value": "urn:glue2:ComputingService:expanse-gpu.sdsc.xsede.org"
 		}
