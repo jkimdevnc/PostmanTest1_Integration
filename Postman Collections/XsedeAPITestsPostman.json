@@ -26,7 +26,7 @@
 									"    //console.log(arrLen);",
 									"    if (arrLen < 1) {",
 									"        // set ID variable to none and return fail",
-									"        pm.collectionVariables.set(\"xsede_ID\",'');",
+									"        pm.collectionVariables.set(\"xsede_ID\",\"NONE\");",
 									"        pm.expect.fail(\" No element exist!\");",
 									"    }",
 									"",
@@ -240,17 +240,17 @@
 						{
 							"listen": "test",
 							"script": {
+								"id": "01c23ccd-186e-4ae5-b6c6-0e948ff2b9b6",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
 									"});",
 									"",
-									"pm.test(\"Response time is less than 200ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"pm.test(\"Response time is less than 500ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);",
 									"});"
 								],
-								"type": "text/javascript",
-								"id": "01c23ccd-186e-4ae5-b6c6-0e948ff2b9b6"
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -465,7 +465,7 @@
 	],
 	"variable": [
 		{
-			"id": "d4da40cf-22b1-4b4f-9b47-fa3b1e1bce5b",
+			"id": "3e4a90f2-e1e0-41b1-a48c-168e25cbc612",
 			"key": "xsede_ID",
 			"value": "urn:glue2:ComputingService:expanse-gpu.sdsc.xsede.org"
 		}
