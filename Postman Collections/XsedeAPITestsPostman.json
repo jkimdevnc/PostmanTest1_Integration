@@ -21,12 +21,18 @@
 									"});",
 									"",
 									"pm.test(\"Save ID\", function () {",
-									"    // get ID of first element",
-									"    ID = pm.response.json()[0].ID;",
-									"    //console.log(ID);",
+									"    // get mid index of response data array",
+									"    let arrLen = pm.response.json().length;",
+									"    //console.log(arrLen);",
+									"    let midIdx = Math.floor(arrLen/2);",
+									"    //console.log(midIdx);",
+									"",
+									"    // get ID of midIdx element",
+									"    ID = pm.response.json()[midIdx].ID;",
+									"    console.log(ID);",
 									"",
 									"    // get ResourceID of first element - TEST purpose",
-									"    //resourceID = response.json()[0].ResourceID;",
+									"    //resourceID = response.json()[midIdx].ResourceID;",
 									"    //console.log(resourceID);",
 									"",
 									"    // set ID to collection variable",
@@ -110,6 +116,11 @@
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
 									"});"
 								],
 								"type": "text/javascript"
@@ -446,7 +457,7 @@
 	],
 	"variable": [
 		{
-			"id": "0edf7b88-b054-430f-aeb4-fe408111efce",
+			"id": "3f987c44-0ac6-499f-816e-d5937e0cb9e8",
 			"key": "xsede_ID",
 			"value": "urn:glue2:ComputingService:expanse-gpu.sdsc.xsede.org"
 		}
