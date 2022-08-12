@@ -16,9 +16,6 @@
 							"script": {
 								"id": "7df94e74-46ef-4d1b-a6cf-b2966627fc54",
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});",
 									"",
 									"pm.test(\"Save ID\", function () {",
 									"    // get mid index of response data array",
@@ -122,10 +119,6 @@
 							"script": {
 								"id": "bcfca4d9-5c39-4759-9f4b-5fb44515f8fa",
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});",
-									"",
 									"",
 									"pm.test(\"Response time is less than 200ms\", function () {",
 									"    pm.expect(pm.response.responseTime).to.be.below(200);",
@@ -147,7 +140,31 @@
 					"response": []
 				}
 			],
-			"id": "76876cef-5816-4de2-af25-0fda640da8c4"
+			"id": "76876cef-5816-4de2-af25-0fda640da8c4",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "168b267c-c05e-4764-9264-8d3a9cfde30d",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "26b29e41-0e40-4903-90e5-a7a55c03eda7",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			]
 		},
 		{
 			"name": "glue2-view-api",
@@ -465,9 +482,9 @@
 	],
 	"variable": [
 		{
-			"id": "3e4a90f2-e1e0-41b1-a48c-168e25cbc612",
+			"id": "170e641c-b331-4d36-9020-5a799da3ce9d",
 			"key": "xsede_ID",
-			"value": "urn:glue2:ComputingService:expanse-gpu.sdsc.xsede.org"
+			"value": "NONE"
 		}
 	]
 }
