@@ -264,7 +264,7 @@
 									"});",
 									"",
 									"pm.test(\"Response time is less than 500ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(500);",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
 									"});"
 								],
 								"type": "text/javascript"
@@ -482,7 +482,7 @@
 	],
 	"variable": [
 		{
-			"id": "170e641c-b331-4d36-9020-5a799da3ce9d",
+			"id": "8f3a7b1e-711e-4e0e-b4b4-c98280367d8c",
 			"key": "xsede_ID",
 			"value": "NONE"
 		}
