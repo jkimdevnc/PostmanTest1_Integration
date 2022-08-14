@@ -263,7 +263,7 @@
 									"    pm.response.to.have.status(200);",
 									"});",
 									"",
-									"pm.test(\"Response time is less than 500ms\", function () {",
+									"pm.test(\"Response time is less than 1000ms\", function () {",
 									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
 									"});"
 								],
@@ -482,7 +482,7 @@
 	],
 	"variable": [
 		{
-			"id": "8f3a7b1e-711e-4e0e-b4b4-c98280367d8c",
+			"id": "a127cf42-e619-4c80-94ef-198d284a6fc8",
 			"key": "xsede_ID",
 			"value": "NONE"
 		}
