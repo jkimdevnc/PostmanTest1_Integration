@@ -16,6 +16,13 @@
 							"script": {
 								"id": "7df94e74-46ef-4d1b-a6cf-b2966627fc54",
 								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 400ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(400);",
+									"});",
 									"",
 									"pm.test(\"Save ID\", function () {",
 									"    // get mid index of response data array",
@@ -42,9 +49,6 @@
 									"    pm.collectionVariables.set(\"xsede_ID\", ID);",
 									"});",
 									"",
-									"pm.test(\"Response time is less than 400ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(400);",
-									"});",
 									"",
 									""
 								],
@@ -105,7 +109,7 @@
 								"exec": [
 									"",
 									"// Get ID from collection variable which is set by previous test",
-									"//console.log(pm.collectionVariables.get(\"xsede_ID\"));",
+									"console.log(\"Load ID: \" + pm.collectionVariables.get(\"xsede_ID\"));",
 									"pm.environment.set(\"localID\", pm.collectionVariables.get(\"xsede_ID\"));",
 									"",
 									"",
@@ -119,6 +123,10 @@
 							"script": {
 								"id": "bcfca4d9-5c39-4759-9f4b-5fb44515f8fa",
 								"exec": [
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
 									"",
 									"pm.test(\"Response time is less than 200ms\", function () {",
 									"    pm.expect(pm.response.responseTime).to.be.below(200);",
@@ -147,6 +155,10 @@
 							"script": {
 								"id": "70bbb621-3e61-413e-981e-d28456554088",
 								"exec": [
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
 									"",
 									"pm.test(\"Response time is less than 300ms\", function () {",
 									"    pm.expect(pm.response.responseTime).to.be.below(300);",
@@ -197,7 +209,7 @@
 								"id": "72f54e9d-cc10-4b1a-89a9-689c36ba6794",
 								"exec": [
 									"// Get ID from collection variable which is set by previous test",
-									"console.log(pm.collectionVariables.get(\"xsede_ID\"));",
+									"console.log(\"Load ID: \" + pm.collectionVariables.get(\"xsede_ID\"));",
 									"pm.environment.set(\"localID\", pm.collectionVariables.get(\"xsede_ID\"));",
 									""
 								],
@@ -209,6 +221,10 @@
 							"script": {
 								"id": "25000081-882a-4ec5-a8c6-59a35717397d",
 								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
 									"",
 									"pm.test(\"Response time is less than 200ms\", function () {",
 									"    pm.expect(pm.response.responseTime).to.be.below(200);",
@@ -238,11 +254,15 @@
 								"id": "4088e1a0-ff52-4914-9276-f0f48712fb6c",
 								"exec": [
 									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
 									"pm.test(\"Response time is less than 300ms\", function () {",
 									"    pm.expect(pm.response.responseTime).to.be.below(300);",
 									"});",
 									"",
-									"pm.test(\"Save ID\", function () {",
+									"pm.test.skip(\"Save ID\", function () {",
 									"    // get mid index of response data array",
 									"    arrLen = pm.response.json().results.length;",
 									"    //console.log(arrLen);",
@@ -282,27 +302,31 @@
 					"name": "accesspolicy_ID",
 					"event": [
 						{
-							"listen": "prerequest",
+							"listen": "test",
 							"script": {
-								"id": "72f54e9d-cc10-4b1a-89a9-689c36ba6794",
+								"id": "247a33c1-71c7-441f-b639-6391b4430445",
 								"exec": [
-									"// Get ID from collection variable which is set by previous test",
-									"//console.log(pm.collectionVariables.get(\"xsede_ID\"));",
-									"pm.environment.set(\"localID\", pm.collectionVariables.get(\"xsede_ID\"));",
+									"pm.test.skip(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
 									""
 								],
 								"type": "text/javascript"
 							}
 						},
 						{
-							"listen": "test",
+							"listen": "prerequest",
 							"script": {
-								"id": "25000081-882a-4ec5-a8c6-59a35717397d",
+								"id": "1a8412be-32d3-43b9-ae8f-d0ef6896154b",
 								"exec": [
-									"",
-									"pm.test(\"Response time is less than 200ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(200);",
-									"});"
+									"// Get ID from collection variable which is set by previous test",
+									"console.log(\"Load ID: \" + pm.collectionVariables.get(\"xsede_ID\"));",
+									"pm.environment.set(\"localID\", pm.collectionVariables.get(\"xsede_ID\"));",
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -328,11 +352,15 @@
 								"id": "4088e1a0-ff52-4914-9276-f0f48712fb6c",
 								"exec": [
 									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
 									"pm.test(\"Response time is less than 300ms\", function () {",
 									"    pm.expect(pm.response.responseTime).to.be.below(300);",
 									"});",
 									"",
-									"pm.test(\"Save ID\", function () {",
+									"pm.test.skip(\"Save ID\", function () {",
 									"    // get mid index of response data array",
 									"    arrLen = pm.response.json().results.length;",
 									"    //console.log(arrLen);",
@@ -377,7 +405,7 @@
 								"id": "72f54e9d-cc10-4b1a-89a9-689c36ba6794",
 								"exec": [
 									"// Get ID from collection variable which is set by previous test",
-									"//console.log(pm.collectionVariables.get(\"xsede_ID\"));",
+									"console.log(\"Load ID: \" + pm.collectionVariables.get(\"xsede_ID\"));",
 									"pm.environment.set(\"localID\", pm.collectionVariables.get(\"xsede_ID\"));",
 									""
 								],
@@ -389,6 +417,9 @@
 							"script": {
 								"id": "25000081-882a-4ec5-a8c6-59a35717397d",
 								"exec": [
+									"pm.test.skip(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
 									"",
 									"pm.test(\"Response time is less than 200ms\", function () {",
 									"    pm.expect(pm.response.responseTime).to.be.below(200);",
@@ -417,6 +448,13 @@
 							"script": {
 								"id": "8d861314-8500-4ad9-a50b-0a92b7477b0e",
 								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 1300ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1300);",
+									"});",
 									"",
 									"",
 									"pm.test(\"Save ID\", function () {",
@@ -442,10 +480,6 @@
 									"",
 									"    // set ID to collection variable",
 									"    pm.collectionVariables.set(\"xsede_ID\", ID);",
-									"});",
-									"",
-									"pm.test(\"Response time is less than 1300ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(1300);",
 									"});",
 									"",
 									""
@@ -507,7 +541,7 @@
 								"exec": [
 									"",
 									"// Get ID from collection variable which is set by previous test",
-									"//console.log(pm.collectionVariables.get(\"xsede_ID\"));",
+									"console.log(\"Load ID: \" + pm.collectionVariables.get(\"xsede_ID\"));",
 									"pm.environment.set(\"localID\", pm.collectionVariables.get(\"xsede_ID\"));",
 									"",
 									"",
@@ -521,6 +555,10 @@
 							"script": {
 								"id": "bcfca4d9-5c39-4759-9f4b-5fb44515f8fa",
 								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
 									"",
 									"pm.test(\"Response time is less than 200ms\", function () {",
 									"    pm.expect(pm.response.responseTime).to.be.below(200);",
@@ -549,6 +587,13 @@
 							"script": {
 								"id": "7df94e74-46ef-4d1b-a6cf-b2966627fc54",
 								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});",
 									"",
 									"",
 									"pm.test(\"Save ID\", function () {",
@@ -574,10 +619,6 @@
 									"",
 									"    // set ID to collection variable",
 									"    pm.collectionVariables.set(\"xsede_ID\", ID);",
-									"});",
-									"",
-									"pm.test(\"Response time is less than 1000ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
 									"});",
 									"",
 									""
@@ -639,7 +680,7 @@
 								"exec": [
 									"",
 									"// Get ID from collection variable which is set by previous test",
-									"//console.log(pm.collectionVariables.get(\"xsede_ID\"));",
+									"console.log(\"Load ID: \" + pm.collectionVariables.get(\"xsede_ID\"));",
 									"pm.environment.set(\"localID\", pm.collectionVariables.get(\"xsede_ID\"));",
 									"",
 									"",
@@ -653,6 +694,10 @@
 							"script": {
 								"id": "bcfca4d9-5c39-4759-9f4b-5fb44515f8fa",
 								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
 									"",
 									"pm.test(\"Response time is less than 200ms\", function () {",
 									"    pm.expect(pm.response.responseTime).to.be.below(200);",
@@ -681,6 +726,15 @@
 							"script": {
 								"id": "7df94e74-46ef-4d1b-a6cf-b2966627fc54",
 								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
 									"",
 									"",
 									"pm.test(\"Save ID\", function () {",
@@ -706,10 +760,6 @@
 									"",
 									"    // set ID to collection variable",
 									"    pm.collectionVariables.set(\"xsede_ID\", ID);",
-									"});",
-									"",
-									"pm.test(\"Response time is less than 200ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(200);",
 									"});",
 									"",
 									""
@@ -771,7 +821,7 @@
 								"exec": [
 									"",
 									"// Get ID from collection variable which is set by previous test",
-									"//console.log(pm.collectionVariables.get(\"xsede_ID\"));",
+									"console.log(\"Load ID: \" + pm.collectionVariables.get(\"xsede_ID\"));",
 									"pm.environment.set(\"localID\", pm.collectionVariables.get(\"xsede_ID\"));",
 									"",
 									"",
@@ -785,6 +835,10 @@
 							"script": {
 								"id": "bcfca4d9-5c39-4759-9f4b-5fb44515f8fa",
 								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
 									"",
 									"pm.test(\"Response time is less than 200ms\", function () {",
 									"    pm.expect(pm.response.responseTime).to.be.below(200);",
@@ -813,6 +867,9 @@
 							"script": {
 								"id": "391cc075-7652-46c6-9e1f-e1a68d2b7b86",
 								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
 									"",
 									"pm.test(\"Response time is less than 300ms\", function () {",
 									"    pm.expect(pm.response.responseTime).to.be.below(300);",
@@ -864,7 +921,7 @@
 								"exec": [
 									"",
 									"// Get ID from collection variable which is set by previous test",
-									"//console.log(pm.collectionVariables.get(\"xsede_ID\"));",
+									"console.log(\"Load ID: \" + pm.collectionVariables.get(\"xsede_ID\"));",
 									"pm.environment.set(\"localID\", pm.collectionVariables.get(\"xsede_ID\"));",
 									"",
 									"",
@@ -878,6 +935,10 @@
 							"script": {
 								"id": "bcfca4d9-5c39-4759-9f4b-5fb44515f8fa",
 								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
 									"",
 									"pm.test(\"Response time is less than 200ms\", function () {",
 									"    pm.expect(pm.response.responseTime).to.be.below(200);",
@@ -906,7 +967,14 @@
 							"script": {
 								"id": "7df94e74-46ef-4d1b-a6cf-b2966627fc54",
 								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
 									"",
+									"",
+									"pm.test(\"Response time is less than 300ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(300);",
+									"});",
 									"",
 									"pm.test(\"Save ID\", function () {",
 									"    // get mid index of response data array",
@@ -933,9 +1001,7 @@
 									"    pm.collectionVariables.set(\"xsede_ID\", ID);",
 									"});",
 									"",
-									"pm.test(\"Response time is less than 300ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(300);",
-									"});",
+									"",
 									"",
 									""
 								],
@@ -996,7 +1062,7 @@
 								"exec": [
 									"",
 									"// Get ID from collection variable which is set by previous test",
-									"//console.log(pm.collectionVariables.get(\"xsede_ID\"));",
+									"console.log(\"Load ID: \" + pm.collectionVariables.get(\"xsede_ID\"));",
 									"pm.environment.set(\"localID\", pm.collectionVariables.get(\"xsede_ID\"));",
 									"",
 									"",
@@ -1010,6 +1076,9 @@
 							"script": {
 								"id": "bcfca4d9-5c39-4759-9f4b-5fb44515f8fa",
 								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
 									"",
 									"pm.test(\"Response time is less than 200ms\", function () {",
 									"    pm.expect(pm.response.responseTime).to.be.below(200);",
@@ -1038,12 +1107,16 @@
 							"script": {
 								"id": "391cc075-7652-46c6-9e1f-e1a68d2b7b86",
 								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
 									"",
 									"pm.test(\"Response time is less than 300ms\", function () {",
 									"    pm.expect(pm.response.responseTime).to.be.below(300);",
 									"});",
 									"",
-									"pm.test(\"Save ID\", function () {",
+									"pm.test.skip(\"Save ID\", function () {",
 									"    // get mid index of response data array",
 									"    arrLen = pm.response.json().results.length;",
 									"    //console.log(arrLen);",
@@ -1089,7 +1162,7 @@
 								"exec": [
 									"",
 									"// Get ID from collection variable which is set by previous test",
-									"//console.log(pm.collectionVariables.get(\"xsede_ID\"));",
+									"console.log(\"Load ID: \" + pm.collectionVariables.get(\"xsede_ID\"));",
 									"pm.environment.set(\"localID\", pm.collectionVariables.get(\"xsede_ID\"));",
 									"",
 									"",
@@ -1103,6 +1176,10 @@
 							"script": {
 								"id": "bcfca4d9-5c39-4759-9f4b-5fb44515f8fa",
 								"exec": [
+									"pm.test.skip(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
 									"",
 									"pm.test(\"Response time is less than 200ms\", function () {",
 									"    pm.expect(pm.response.responseTime).to.be.below(200);",
@@ -1131,12 +1208,16 @@
 							"script": {
 								"id": "391cc075-7652-46c6-9e1f-e1a68d2b7b86",
 								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
 									"",
 									"pm.test(\"Response time is less than 300ms\", function () {",
 									"    pm.expect(pm.response.responseTime).to.be.below(300);",
 									"});",
 									"",
-									"pm.test(\"Save ID\", function () {",
+									"pm.test.skip(\"Save ID\", function () {",
 									"    // get mid index of response data array",
 									"    arrLen = pm.response.json().results.length;",
 									"    //console.log(arrLen);",
@@ -1182,7 +1263,7 @@
 								"exec": [
 									"",
 									"// Get ID from collection variable which is set by previous test",
-									"//console.log(pm.collectionVariables.get(\"xsede_ID\"));",
+									"console.log(\"Load ID: \" + pm.collectionVariables.get(\"xsede_ID\"));",
 									"pm.environment.set(\"localID\", pm.collectionVariables.get(\"xsede_ID\"));",
 									"",
 									"",
@@ -1196,6 +1277,10 @@
 							"script": {
 								"id": "bcfca4d9-5c39-4759-9f4b-5fb44515f8fa",
 								"exec": [
+									"pm.test.skip(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
 									"",
 									"pm.test(\"Response time is less than 200ms\", function () {",
 									"    pm.expect(pm.response.responseTime).to.be.below(200);",
@@ -1224,7 +1309,13 @@
 							"script": {
 								"id": "7df94e74-46ef-4d1b-a6cf-b2966627fc54",
 								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
 									"",
+									"pm.test(\"Response time is less than 300ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(300);",
+									"});",
 									"",
 									"pm.test(\"Save ID\", function () {",
 									"    // get mid index of response data array",
@@ -1251,9 +1342,7 @@
 									"    pm.collectionVariables.set(\"xsede_ID\", ID);",
 									"});",
 									"",
-									"pm.test(\"Response time is less than 300ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(300);",
-									"});",
+									"",
 									"",
 									""
 								],
@@ -1310,11 +1399,11 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "e5b223db-4ae4-4140-8aba-90934afcd3c5",
+								"id": "50304b90-25cf-4492-8fcf-f4e402a612d2",
 								"exec": [
 									"",
 									"// Get ID from collection variable which is set by previous test",
-									"//console.log(pm.collectionVariables.get(\"xsede_ID\"));",
+									"console.log(\"Load ID: \" + pm.collectionVariables.get(\"xsede_ID\"));",
 									"pm.environment.set(\"localID\", pm.collectionVariables.get(\"xsede_ID\"));",
 									"",
 									"",
@@ -1326,8 +1415,12 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "bcfca4d9-5c39-4759-9f4b-5fb44515f8fa",
+								"id": "4c8d36f2-2e29-474c-a357-bb65ded5b56c",
 								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
 									"",
 									"pm.test(\"Response time is less than 200ms\", function () {",
 									"    pm.expect(pm.response.responseTime).to.be.below(200);",
@@ -1356,6 +1449,14 @@
 							"script": {
 								"id": "7df94e74-46ef-4d1b-a6cf-b2966627fc54",
 								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response time is less than 300ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(300);",
+									"});",
 									"",
 									"",
 									"pm.test(\"Save ID\", function () {",
@@ -1383,9 +1484,6 @@
 									"    pm.collectionVariables.set(\"xsede_ID\", ID);",
 									"});",
 									"",
-									"pm.test(\"Response time is less than 300ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(300);",
-									"});",
 									"",
 									""
 								],
@@ -1446,7 +1544,7 @@
 								"exec": [
 									"",
 									"// Get ID from collection variable which is set by previous test",
-									"//console.log(pm.collectionVariables.get(\"xsede_ID\"));",
+									"console.log(\"Load ID: \" + pm.collectionVariables.get(\"xsede_ID\"));",
 									"pm.environment.set(\"localID\", pm.collectionVariables.get(\"xsede_ID\"));",
 									"",
 									"",
@@ -1460,6 +1558,10 @@
 							"script": {
 								"id": "bcfca4d9-5c39-4759-9f4b-5fb44515f8fa",
 								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
 									"",
 									"pm.test(\"Response time is less than 200ms\", function () {",
 									"    pm.expect(pm.response.responseTime).to.be.below(200);",
@@ -1488,6 +1590,14 @@
 							"script": {
 								"id": "7df94e74-46ef-4d1b-a6cf-b2966627fc54",
 								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response time is less than 300ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(300);",
+									"});",
 									"",
 									"",
 									"pm.test(\"Save ID\", function () {",
@@ -1515,9 +1625,7 @@
 									"    pm.collectionVariables.set(\"xsede_ID\", ID);",
 									"});",
 									"",
-									"pm.test(\"Response time is less than 300ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(300);",
-									"});",
+									"",
 									"",
 									""
 								],
@@ -1578,7 +1686,7 @@
 								"exec": [
 									"",
 									"// Get ID from collection variable which is set by previous test",
-									"//console.log(pm.collectionVariables.get(\"xsede_ID\"));",
+									"console.log(\"Load ID: \" + pm.collectionVariables.get(\"xsede_ID\"));",
 									"pm.environment.set(\"localID\", pm.collectionVariables.get(\"xsede_ID\"));",
 									"",
 									"",
@@ -1592,6 +1700,10 @@
 							"script": {
 								"id": "bcfca4d9-5c39-4759-9f4b-5fb44515f8fa",
 								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
 									"",
 									"pm.test(\"Response time is less than 200ms\", function () {",
 									"    pm.expect(pm.response.responseTime).to.be.below(200);",
@@ -1620,12 +1732,16 @@
 							"script": {
 								"id": "391cc075-7652-46c6-9e1f-e1a68d2b7b86",
 								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
 									"",
 									"pm.test(\"Response time is less than 300ms\", function () {",
 									"    pm.expect(pm.response.responseTime).to.be.below(300);",
 									"});",
 									"",
-									"pm.test(\"Save ID\", function () {",
+									"pm.test.skip(\"Save ID\", function () {",
 									"    // get mid index of response data array",
 									"    arrLen = pm.response.json().results.length;",
 									"    //console.log(arrLen);",
@@ -1671,7 +1787,7 @@
 								"exec": [
 									"",
 									"// Get ID from collection variable which is set by previous test",
-									"//console.log(pm.collectionVariables.get(\"xsede_ID\"));",
+									"console.log(\"Load ID: \" + pm.collectionVariables.get(\"xsede_ID\"));",
 									"pm.environment.set(\"localID\", pm.collectionVariables.get(\"xsede_ID\"));",
 									"",
 									"",
@@ -1685,6 +1801,10 @@
 							"script": {
 								"id": "bcfca4d9-5c39-4759-9f4b-5fb44515f8fa",
 								"exec": [
+									"pm.test.skip(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
 									"",
 									"pm.test(\"Response time is less than 200ms\", function () {",
 									"    pm.expect(pm.response.responseTime).to.be.below(200);",
@@ -1711,7 +1831,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "168b267c-c05e-4764-9264-8d3a9cfde30d",
+						"id": "be1e03b1-b76f-4381-96ce-81d9acbc9d5f",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -1721,12 +1841,10 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "26b29e41-0e40-4903-90e5-a7a55c03eda7",
+						"id": "c9499f78-fd3c-4850-9e0e-0ac15e68012e",
 						"type": "text/javascript",
 						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});"
+							""
 						]
 					}
 				}
@@ -2048,7 +2166,7 @@
 	],
 	"variable": [
 		{
-			"id": "4b1da632-34dd-4f70-9dbf-08e0fe7ea6eb",
+			"id": "389782f5-a856-4510-877c-cde70af0407d",
 			"key": "xsede_ID",
 			"value": "NONE"
 		}
