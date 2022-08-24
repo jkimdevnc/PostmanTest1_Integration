@@ -2802,6 +2802,274 @@
 			"id": "ddb4e7d4-aec2-4876-9cd3-f3d451b7224f"
 		},
 		{
+			"name": "Outages",
+			"item": [
+				{
+					"name": "outages",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0f2c93a7-775d-4e46-b7a2-f9b581345ab3",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// SKIP as this can take upto 7sec or more. ",
+									"// May add back later when it becomes more in range. ",
+									"// Otherwise remove this test. ",
+									"pm.test.skip(\"Response time is less than 1500ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1500);",
+									"});",
+									"",
+									"pm.test(\"Save Parameters for next test\", function () {",
+									"    // get mid index of response data array",
+									"    let arrLen = pm.response.json().length;",
+									"    //console.log(arrLen);",
+									"    if (arrLen < 1) {",
+									"        // set ID variable to none and return fail",
+									"        pm.collectionVariables.set(\"xsede_ID\",\"NONE\");",
+									"        pm.expect.fail(\" No element exist!\");",
+									"    }",
+									"",
+									"    let midIdx = Math.floor(arrLen/2);",
+									"    //console.log(midIdx);",
+									"",
+									"    //----------------------------",
+									"    // Save ID",
+									"    // get middle element ",
+									"    ID = pm.response.json()[midIdx].ID;",
+									"    console.log(\"SAVED ID: \" + ID);",
+									"    // set to collection variable",
+									"    pm.collectionVariables.set(\"xsede_ID\", ID);",
+									"",
+									"",
+									"    //-----------------------------------",
+									"    // Save ResourceID",
+									"    // get middle element ",
+									"    resourceID = pm.response.json()[midIdx].ResourceID;",
+									"    console.log(\"SAVED ResourceID: \" + resourceID);",
+									"    // set to collection variable",
+									"    pm.collectionVariables.set(\"resourceID\", resourceID);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "325c671e-ffc4-4924-8c2d-6c6447a83a42",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "https://info.xsede.org/wh1/outages/v1/outages/"
+					},
+					"response": []
+				},
+				{
+					"name": "outages_ID",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "27796364-d966-4cbc-9914-40fb53fcc0ce",
+								"exec": [
+									"",
+									"// collection variables that are set by previous test",
+									"console.log(\"Loaded ID: \" + pm.collectionVariables.get(\"xsede_ID\"));",
+									"",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "dfa6f311-f0ae-4c58-bfab-e18de08d2e6a",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "61df7a14-6b29-4b0e-8fd9-38abee8005f1",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "https://info.xsede.org/wh1/outages/v1/outages/ID/{{xsede_ID}}"
+					},
+					"response": []
+				},
+				{
+					"name": "outages_ResourceID",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "27796364-d966-4cbc-9914-40fb53fcc0ce",
+								"exec": [
+									"// collection variables that are set by previous test",
+									"console.log(\"Loaded ResourceID: \" + pm.collectionVariables.get(\"resourceID\"));",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "dfa6f311-f0ae-4c58-bfab-e18de08d2e6a",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response time is less than 300ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(300);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "548f3587-8262-4bba-be9f-d67cb2d94d16",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "https://info.xsede.org/wh1/outages/v1/outages/ResourceID/{{resourceID}}"
+					},
+					"response": []
+				},
+				{
+					"name": "outagesCurrent",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0f2c93a7-775d-4e46-b7a2-f9b581345ab3",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response time is less than 300ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(300);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "95d1c531-6085-4cb9-a247-684ceda6562c",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "https://info.xsede.org/wh1/outages/v1/outages/Current/"
+					},
+					"response": []
+				},
+				{
+					"name": "outagesFuture",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0f2c93a7-775d-4e46-b7a2-f9b581345ab3",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response time is less than 300ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(300);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "e2c5c8c3-2083-49a6-bcb4-0d46a6b35c29",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "https://info.xsede.org/wh1/outages/v1/outages/Future/"
+					},
+					"response": []
+				},
+				{
+					"name": "outagesPast",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0f2c93a7-775d-4e46-b7a2-f9b581345ab3",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response time is less than 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "03cfca54-5637-4033-9890-407d5e7429aa",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "https://info.xsede.org/wh1/outages/v1/outages/Past/"
+					},
+					"response": []
+				}
+			],
+			"id": "5330375d-3423-40bd-997f-ba932d356675"
+		},
+		{
 			"name": "IncaTests",
 			"item": [
 				{
@@ -3084,27 +3352,27 @@
 	],
 	"variable": [
 		{
-			"id": "e8859199-9c9c-40c9-a20d-4f59904ba794",
+			"id": "1e0d84b3-9f39-4919-98c1-93137f005f40",
 			"key": "xsede_ID",
 			"value": "NONE"
 		},
 		{
-			"id": "6166b63d-3ae9-4a1d-bf6d-defa560da492",
+			"id": "53f95989-1386-4a64-aa01-9a53a4b76884",
 			"key": "interfaceName",
 			"value": ""
 		},
 		{
-			"id": "fb75d05e-6259-4ba4-8ffe-696c2dfe58d7",
+			"id": "b61d41c3-8128-4a74-8d8a-64dd730104e2",
 			"key": "resourceID",
 			"value": ""
 		},
 		{
-			"id": "f0c835e3-2d01-46d8-88f6-ef2c485f1e35",
+			"id": "3e61e7aa-a2dd-467d-83ec-42a49d6199ee",
 			"key": "serviceType",
 			"value": ""
 		},
 		{
-			"id": "3fc83e68-113f-4b28-b4fa-664fea6ed91a",
+			"id": "1feeb505-43e9-46bf-8777-22d91acfac2d",
 			"key": "appName",
 			"value": ""
 		}
