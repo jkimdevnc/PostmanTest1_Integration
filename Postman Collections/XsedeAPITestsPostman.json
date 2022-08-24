@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "d5b7c33d-adeb-47b9-b031-18d6548df95f",
-		"name": "XSEDE_API_TESTS_POSTMAN_withGithub",
+		"name": "XSEDE_API_TESTS_POSTMAN",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
@@ -3928,37 +3928,37 @@
 	],
 	"variable": [
 		{
-			"id": "c49dc8d7-821d-4201-b764-56a73e5e5a03",
+			"id": "b515ef6c-17fd-492f-8609-c24d2283ca5f",
 			"key": "xsede_ID",
 			"value": "NONE"
 		},
 		{
-			"id": "7a3a3049-5f21-433d-9eec-32a7a2bb26be",
+			"id": "dced4763-337d-44ef-874f-1840b9122ab7",
 			"key": "interfaceName",
 			"value": ""
 		},
 		{
-			"id": "5c6c2541-5ac0-4707-9f66-a580e7c99acc",
+			"id": "e3ca86a1-f434-4f7b-a12d-6edcf333c0cb",
 			"key": "resourceID",
 			"value": ""
 		},
 		{
-			"id": "1ce3669b-9120-4e4f-9b8d-a15c4d0d463b",
+			"id": "76a37d5f-d9c6-4fb5-895a-720b539ad470",
 			"key": "serviceType",
 			"value": ""
 		},
 		{
-			"id": "8b4db1eb-c5e7-42c4-bafa-52c35eae4e7a",
+			"id": "4978584b-4449-466a-9493-ec9fd2aa7b48",
 			"key": "appName",
 			"value": ""
 		},
 		{
-			"id": "fca4ec4d-7b06-45be-a69d-8635a2aa0cf1",
+			"id": "5d150883-590a-477d-a42a-77196af72ed8",
 			"key": "rdr_Type",
 			"value": ""
 		},
 		{
-			"id": "1f6bd05b-9d9a-4642-ae1a-ba5025f6f0c5",
+			"id": "8cef01ed-2c13-49f8-9999-3c5b093eca0f",
 			"key": "info_siteID",
 			"value": ""
 		}
